@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deeter{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+    <div class="col-12">
+        <h2 class="text-center">Bienvenue {{ app.user.pseudo }}</h2>
+        {{ form_start(form)}}
+        {{ form_row(form.content)}}
+        <button type="submit" class="btn btn-success">Envoyer</button>
+        {{ form_end(form)}}
+    </div>
+    {% endif %}
+
+    <div class="col-12">
+        <h1 class="text-center my-4">Liste de Deets</h1>
+    </div>
+    <div class="col-12">
+        <ul class="list-group list-group-flush">
+            {% for deet in deets %}
+                <li class="list-group-item">{{ deet.createdAt | date('d/m/Y à H:i:s') }} - {{ deet.content }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
